@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with RAG</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .response-box {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .response-box p {
+            margin: 0;
+        }
+        .query {
+            font-weight: bold;
+            color: #555;
+        }
+        .response {
+            margin-top: 10px;
+        }
+        .overview-link {
+            text-decoration: none;
+            color: #007BFF;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ask me anything about the books in my memory 😃😇</h1>
+    <form method="post" action="{% url 'chat' %}">
+        {% csrf_token %}
+        <label for="query">Enter your query:</label>
+        <textarea id="query" name="query" rows="4" placeholder="Enter your query here" required></textarea>
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if query %}
+        <div class="response-box">
+            <p class="query">You asked: "{{ query }}"</p>
+            {% if response %}
+                <div class="response">
+                    <h2>Response:</h2>
+                    <!-- Mark the response as safe HTML -->
+                    <div>{{ response|safe }}</div>
+                </div>
+            {% else %}
+                <p>No response generated.</p>
+            {% endif %}
+        </div>
+    {% endif %}
+
+    <a class="overview-link" href="{% url 'overview' %}">Go to Overview</a>
+</body>
+</html>
