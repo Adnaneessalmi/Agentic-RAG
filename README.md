@@ -20,6 +20,8 @@ This project is an agentic Retrieval-Augmented Generation (RAG) system that enha
 - **PyTorch**: For efficient deep learning computation and handling embeddings.
 - **SentenceTransformer**: From HuggingFace, used to calculate embeddings for text chunks.
 - **Gemma2 LLM**: Language model used for generating responses.
+- **nltk**: For natural language processing.
+- **numpy**: For numerical operations and efficient handling of arrays and matrices.
 - **Django**: Web framework for displaying user interfaces and managing interactions.
 
 ## File Structure
